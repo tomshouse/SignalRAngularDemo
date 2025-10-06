@@ -1,0 +1,127 @@
+﻿<!doctype html>
+<html>
+<head>
+    <style>
+        html {
+            cursor: none !important;
+        }
+
+        body {
+            user-select: none;
+            overflow: hidden;
+            min-width: 800px;
+            min-height: 480px;
+            background-color: #2d3e50;
+        }
+
+        .bkgd-art {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: .5
+        }
+
+            .bkgd-art img {
+                margin-top: -208px;
+                margin-left: -880px;
+            }
+
+        .bkgd-art-2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: .6
+        }
+
+            .bkgd-art-2 img {
+                margin-top: -368px;
+                margin-left: -144px;
+            }
+
+        #logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        #cd-image {
+            width: 600px;
+            padding-bottom: 20px;
+        }
+
+        #ta-image {
+            max-height: 100px;
+            width: 600px;
+            padding-bottom: 20px;
+            display: block;
+            object-fit: contain;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #cd-image-smaller {
+            width: 400px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .loading-spinner {
+            margin: 0 auto;
+            width: 90px;
+            height: 90px;
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #003E7E; /* CD Blue */
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';">
+    <title>GreyHawk MDT Loading</title>
+</head>
+<body ondragstart="return false;" ondrop="return false;">
+    <div class="bkgd-art-2"><img src="./img/cd-logo-white.svg" alt="Clever Devices" draggable="false" height="800"></div>
+    <div class="bkgd-art"><img src="./img/cd-swoosh-gray.svg" alt="Clever Devices" draggable="false" height="1200"></div>
+
+    <div id="logo">
+        <img id="cd-image" src="./img/cd-logo.svg" alt="Clever Devices" draggable="false" />
+        <img id="ta-image" alt="TA" draggable="false" style="visibility: hidden" />
+        <div class="loading-spinner"></div>
+        <img id="cd-image-smaller" src="./img/cd-logo.svg" alt="Clever Devices" draggable="false" style="visibility: hidden;" />
+    </div>
+
+    <script>
+        var remote = require('electron').remote;
+
+        if (remote.getGlobal('HasTaLogo')) {
+            document.getElementById('logo').style.top = '40%';
+            document.getElementById('cd-image').style.visibility = 'hidden';
+            document.getElementById('ta-image').src = 'file://' + remote.getGlobal('TaLogoPath');
+            document.getElementById('ta-image').style.visibility = 'visible';
+            document.getElementById('cd-image-smaller').style.visibility = 'visible';
+        }
+    </script>
+</body>
+</html>

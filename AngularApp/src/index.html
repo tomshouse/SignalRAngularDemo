@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CleverWareMobile</title>
+    <base href="./">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script>
+        window.addEventListener('load', async () => {
+
+            const requestModule = ({ url, dataURL = true }) =>
+                new Promise((resolve, reject) => {
+                    const request = new XMLHttpRequest();
+                    const reader = new FileReader();
+                    reader.onload = () => { resolve(reader.result) };
+                    request.open("GET", url);
+                    request.responseType = "blob";
+                    request.onload = () => { reader[dataURL ? "readAsDataURL" : "readAsText"](request.response) };
+                    request.send();
+                })
+
+            let scripts = document.querySelectorAll('script');
+            console.log(scripts);
+            for (let script of scripts) {
+                console.log(script.getAttribute('src'));
+                script.parentElement.removeChild(script);
+                if (script.getAttribute('type') !== 'module') continue; // found normal script
+                let src = script.getAttribute('src');
+                if (src !== null) {
+                    let moduleRequest = await requestModule({ url: src });
+                    let moduleBody = await requestModule({ url: src, dataURL: false });
+
+                    let script = document.createElement('script');
+                    script.type = 'module';
+                    script.textContent = moduleBody;
+                    document.head.appendChild(script);
+
+                }
+            }
+
+        });
+    </script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="mat-typography">  
+  <app-root></app-root>
+</body>
+</html>

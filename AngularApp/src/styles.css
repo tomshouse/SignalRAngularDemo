@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: larger;
+}
+
+
+/* Theme for input, update in future to use ANgular Material and Responsive*/
+.thick-blue-border {
+    border-radius: 5px;
+    border-color: darkblue;
+    border-width: 10x;
+    border-style: solid;
+    border-radius: 5px;
+    height: 2em;
+}

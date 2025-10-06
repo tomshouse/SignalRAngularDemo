@@ -1,0 +1,28 @@
+#app-footer {
+    height: 55px;
+    width: 100%;
+    z-index: 100;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+#app-footer div {
+    z-index: inherit;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.info-text {
+    justify-content: center;
+    text-align: center;
+    line-height: .8;
+    z-index: inherit;
+    color: rgba(255, 255, 255, 1);
+}
+
+.clock {
+    margin-right: 8px;
+}

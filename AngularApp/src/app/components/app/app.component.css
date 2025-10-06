@@ -1,0 +1,151 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+#app {
+    position: fixed;
+    min-height: 100%;
+    min-width: 100%;
+    font-weight: normal;
+    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(249,250,254,1) 0%, rgba(172,195,229,1) 100%, rgba(104,147,207,1) 100%, rgba(19,87,179,1) 100%)
+}
+
+#app th {
+    font-weight: 600;
+}
+
+#app.bold-layout {
+    font-weight: bold;
+}
+
+#app.bold-layout h1,
+#app.bold-layout h2,
+#app.bold-layout h3 {
+    font-weight: bold;
+}
+
+#app.bold-layout .btn {
+    font-weight: bold;
+}
+
+#app.small {
+    font-size: 14px;
+}
+
+#app.medium {
+    font-size: 16px;
+}
+
+#app.large {
+    font-size: 18px;
+}
+
+#app.messages-small .message-content {
+    font-size: 18px;
+}
+
+#app.messages-medium .message-content {
+    font-size: 23px;
+}
+
+#app.messages-large .message-content {
+    font-size: 28px;
+}
+
+#app.font-arial {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#app.font-times {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#app.font-verdana {
+    font-family: Verdana, sans-serif;
+}
+
+#app.font-courier {
+    font-family: Courier New, Courier, monospace;
+}
+
+#app h1,
+#app h2,
+#app h3 {
+    font-size: 110%;
+    line-height: 28px;
+}
+
+#app .btn,
+#app .btn.btn-addon,
+#app .form-control {
+    font-size: inherit;
+}
+
+#app.no-frame, #app.no-frame * {
+    cursor: none !important;
+}
+
+#tablet-window {
+    padding-top: 65px;
+    position: fixed;
+    z-index: 10;
+    overflow: hidden;
+    transition: all 1s ease;
+
+    /*Center Content */
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 100%;
+    
+}
+
+.loading-app {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    display: block;
+    opacity: 0.7;
+    background-color: #fff;
+    z-index: 99;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.loading-middle {
+    width: 100%;
+    height: 370px;
+    left: 0;
+    top: 60px;
+    position: fixed;
+    display: block;
+    opacity: 0.7;
+    background-color: #fff;
+    z-index: 99;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.loading-spinner {
+    width: 120px;
+    height: 120px;
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #003E7E; /* Blue */
+    border-radius: 50%;
+    animation: spin 2s steps(8) infinite;
+}
+
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

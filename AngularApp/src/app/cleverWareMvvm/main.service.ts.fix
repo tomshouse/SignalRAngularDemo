@@ -1,0 +1,52 @@
+import { Injectable } from '@angular/core';
+import { Logging } from './logging';
+import { CleverWareViewModelBinder, CleverWareViewModel, ViewModelInput, ViewModelOutput, ViewModelCommand, ViewModelOutputBehaviorSubject } from './viewmodel';
+
+@Injectable()
+export class CleverWareMain extends CleverWareViewModel {
+    private OnStart = new ViewModelCommand();
+    private OnStop = new ViewModelCommand();
+
+    public CommandLine: ViewModelInput<string> = new ViewModelInput<string>("");
+    public IsStarted: ViewModelOutputBehaviorSubject<boolean> = new ViewModelOutputBehaviorSubject<boolean>(false);
+    public IsStopped: boolean = true;
+    public CanLogin: ViewModelOutputBehaviorSubject<boolean> = new ViewModelOutputBehaviorSubject<boolean>(false);
+    public IsShuttingDown: boolean = false;
+
+    constructor(viewModelBinder: CleverWareViewModelBinder) {
+        super(viewModelBinder, "CleverDevices.CleverWare.PT.PTUI.ParaTransitUI.ViewModels.CleverWareMainViewModel");
+        this.initialize(this.IsStarted);
+
+        this.OnStart.OnComplete = () => {
+            this.IsStopped = false;
+            Logging.Instance.Debug("CleverWareMain Started, sets isStopped to false")();
+        }
+        this.OnStop.OnComplete = () => {
+            this.IsStopped = true;
+            Logging.Instance.Debug("CleverWareMain Started, sets isStopped to true")();
+        }
+    }
+
+    public ngOnDestroy() {
+        Logging.Instance.Debug("CleverWareMain ngOnDestroy..")();
+        this.dispose();
+    }
+
+    public SetCommandLine() {
+    }
+
+    public ToggleDevTools() {
+        Logging.Instance.Error("ToggleDevTools not set to actual toggling of dev tools.");
+    }
+    
+    public Start() {
+        this.OnStart.Command();
+        Logging.Instance.Debug("CleverWareMain Started..")();
+    }
+
+    public Stop() {
+        this.IsShuttingDown = true;
+        this.OnStop.Command();
+        Logging.Instance.Debug("CleverWareMain Stopping..")();
+    }        
+}

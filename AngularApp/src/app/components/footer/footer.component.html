@@ -1,0 +1,20 @@
+<div id="app-footer">
+    <div class="row no-margin">
+        <div class="col-md-4 info-text">
+            <div class="time-date info-text">
+                <div>
+                    <strong><span class="clock" style="">{{CurrentDateTime | date: TimeFormat}}</span></strong><span class="date">{{CurrentDateTime| date: DateFormat}}</span>
+                </div><br />
+                <div class="locked-while-driving" *ngIf="DrivingSpeedExceedsThreshold">
+                    Locked while driving
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 no-margin info-text">
+            <p *ngIf="RunId != null&&RunId!=''"><i class="cd cd-road"></i><br /><strong class="status-label-run">{{ RunId }}</strong></p>
+        </div>
+        <div class="col-md-2 no-margin info-text">
+            <p *ngIf="VehicleId != null"><i class="cd cd-bus"></i><br /><strong>{{ VehicleId }}</strong></p>
+        </div>
+    </div>
+</div>
